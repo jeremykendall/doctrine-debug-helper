@@ -1,0 +1,29 @@
+{
+    "name": "jeremykendall/doctrine-debug-helper",
+    "description": "Convenience wrapper around \\Doctrine\\Common\\Util\\Debug::dump()",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeremy Kendall",
+            "email": "jeremy@jeremykendall.net",
+            "homepage": "http://about.me/jeremykendall",
+            "role": "Developer"
+        }
+    ],
+    "keywords": [
+        "Doctrine",
+        "ORM",
+        "helper",
+        "helper function",
+        "convenience function"
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "doctrine/common": "~2.4"
+    },
+    "autoload": {
+        "files": [
+            "src/doctrine-debug-helper.php"
+        ]
+    }
+}
