@@ -15,7 +15,8 @@
         "ORM",
         "helper",
         "helper function",
-        "convenience function"
+        "convenience function",
+        "debugging"
     ],
     "require": {
         "php": ">=5.3.2",
