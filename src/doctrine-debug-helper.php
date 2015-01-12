@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Doctrine Debug Helper: Convenience wrapper around \Doctrine\Common\Util\Debug::dump()
+ * Doctrine Debug Helper: Convenience wrapper around \Doctrine\Common\Util\Debug::dump() with custom defaults
  *
  * @copyright 2014 Jeremy Kendall
  * @license https://github.com/jeremykendall/doctrine-debug-helper/blob/master/LICENSE MIT
@@ -9,36 +9,7 @@
  */
 
 namespace {
-    if (!function_exists('d')) {
-
-        /**
-         * Prints a dump of the public, protected and private properties of $var.
-         *
-         * @link http://xdebug.org/
-         *
-         * @param mixed   $var       The variable to dump.
-         * @param integer $maxDepth  The maximum nesting level for object properties.
-         * @param boolean $stripTags Whether output should strip HTML tags.
-         */
-        function d($var, $maxDepth = 2, $stripTags = true)
-        {
-            \Doctrine\Common\Util\Debug::dump($var, $maxDepth, $stripTags);
-        }
-
-        /**
-         * Prints a dump of the public, protected and private properties of $var and dies
-         *
-         * @link http://xdebug.org/
-         *
-         * @param mixed   $var       The variable to dump.
-         * @param integer $maxDepth  The maximum nesting level for object properties.
-         * @param boolean $stripTags Whether output should strip HTML tags.
-         */
-        function dd($var, $maxDepth = 2, $stripTags = true) {
-            d($var, $maxDepth, $stripTags);
-            die();
-        }
-
+    if (!function_exists('dc') || !function_exists('dcd')) {
         /**
          * Prints a dump of the public, protected and private properties of $var.
          *
@@ -53,7 +24,7 @@ namespace {
          */
         function dc($var, $maxDepth = 3, $stripTags = false)
         {
-            d($var, $maxDepth, $stripTags);
+            \Doctrine\Common\Util\Debug::dump($var, $maxDepth, $stripTags);
         }
 
         /**
@@ -68,9 +39,15 @@ namespace {
          * @param integer $maxDepth  The maximum nesting level for object properties.
          * @param boolean $stripTags Whether output should strip HTML tags.
          */
-        function dcd($var, $maxDepth = 3, $stripTags = false) {
-            d($var, $maxDepth, $stripTags);
+        function dcd($var, $maxDepth = 3, $stripTags = false)
+        {
+            dc($var, $maxDepth, $stripTags);
             die();
         }
+    } else {
+        trigger_error(
+            'dc() or dcd() already exist as functions. doctrine-debug-helper cannot be used.',
+            E_USER_ERROR
+        );
     }
 }
